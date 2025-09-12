@@ -1,3 +1,7 @@
-/testYard
+# /testYard   -->only at root level
 
 testYard/
+# the above line blocks it anywhere at any level in the repo
+
+
+# why this is not showing up in my remote repo
