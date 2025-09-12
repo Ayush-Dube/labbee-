@@ -5,3 +5,5 @@ testYard/
 
 
 # why this is not showing up in my remote repo
+
+*.class
