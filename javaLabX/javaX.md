@@ -246,3 +246,86 @@ ArrayList would be the better choice.
 </details>
  
  
+ # ⚡lab2
+
+ <details><summary>task</summary>
+
+- Requirements  
+
+The file ShoppingCart.java should already exist in the ~/project directory.  
+Complete the removeItem method:  
+It should remove the item at the specified index from the items ArrayList.  
+If the index is invalid (less than 0 or greater than or equal to the size of  the list), it should print "Invalid index" and not modify the list.
+Do not modify any other parts of the code.  
+
+ </details>
+ 
+ <details><summary>solution</summary>
+
+ ```java
+ import java.util.ArrayList;
+
+public class ShoppingCart {
+    private ArrayList<String> items;
+
+    public ShoppingCart() {
+        items = new ArrayList<>();
+    }
+
+    public void addItem(String item) {
+        items.add(item);
+    }
+
+    public void removeItem(int index) {
+        // TODO: Implement this method
+        // Remove the item at the given index if it's valid
+        // If the index is invalid, print "Invalid index"
+        if(index>=0 && index<=items.size()){
+            items.remove(index);
+        }
+        else{
+            System.out.println("Invalid index");
+        }
+    }
+
+
+    public void displayItems() {
+        System.out.println("Items in cart: " + items);
+    }
+
+    public static void main(String[] args) {
+        ShoppingCart cart = new ShoppingCart();
+        cart.addItem("Laptop");
+        cart.addItem("Mouse");
+        cart.addItem("Keyboard");
+        
+        cart.displayItems();
+        
+        System.out.println("Removing item at index 1");
+        cart.removeItem(1);
+        cart.displayItems();
+        
+        System.out.println("Removing item at invalid index");
+        cart.removeItem(5);
+        cart.displayItems();
+    }
+}
+
+ ```
+ </details>
+
+#### Summary  
+- In this challenge, you've implemented a crucial feature of a shopping cart system using an ArrayList in Java. This exercise reinforced key concepts from your Java Arrays and ArrayLists lab:
+
+    - Working with ArrayLists: You used the remove method of ArrayList to delete an item at a specific index.  
+    - Input validation: You checked whether the given index is valid before attempting to remove an item.
+    - Conditional statements: You used an if-else statement to handle different scenarios (valid vs. invalid index).
+- By completing this challenge, you've not only practiced these fundamental Java skills but also created a practical feature that's common in many real-world applications. Shopping carts are a core component of e-commerce platforms, and the ability to add and remove items is essential for a good user experience.
+
+- Remember, ArrayLists are very versatile and offer many useful methods beyond add and remove. As you continue your journey at JavaMart, you might enhance this shopping cart with features like:
+
+- Finding items by name instead of index
+
+- Keeping track of item quantities
+- Calculating the total cost of items in the cart
+Keep practicing and experimenting with your code. The more you work with ArrayLists and other Java collections, the more comfortable you'll become with manipulating data in your programs. Welcome to the world of e-commerce development at JavaMart!
