@@ -67,3 +67,72 @@ Remember, a well-inspected staging area is the key to successful chrono-explorat
 Keep exploring, keep staging, and most importantly, keep reviewing! The future (and past) of code awaits your carefully inspected commits. Safe travels, Chrono-Coder!   
 
 #### Tracked and Staged are different things
+
+tracked untracked staged unstaged
+
+
+## lab4
+
+Summary
+Congratulations, master of the multiverse! You've just completed your crash course in Git branch wizardry. Let's recap the incredible feats you've accomplished:
+
+You created a hub for infinite possibilities (a new Git repository).
+You opened a portal to an alternate reality (created a new branch).
+You learned to jump between different dimensions (switch branches using git checkout or git switch).
+You made groundbreaking discoveries in a parallel universe (committed changes in a separate branch).
+You merged two realities, bringing your discoveries into the main timeline (merged branches).
+Finally, you learned how to close dimensional portals you no longer need (delete branches).
+These multiversal skills are crucial for any time-traveling developer. By using branches, you can:
+
+Work on different features or bug fixes in parallel universes, without disrupting the main timeline.
+Experiment with wild ideas in safe, alternate realities.
+Collaborate with other dimension-hopping developers, each working in their own reality.
+Keep your main timeline stable and glitch-free, only merging in new features when they're ready.
+Happy dimension hopping, and may your merges always be conflict-free!
+
+## lab5
+Secure the Artifact and Document Your Findings
+Tasks
+Create a new branch called artifact-study from the master branch.
+In the artifact-study branch, create a file named temporal-artifact.txt with a brief description of the artifact.
+Update the README.md file to include a section about your ongoing artifact study.
+Commit your changes in the artifact-study branch.
+Merge the artifact-study branch back into master.
+Requirements
+All operations must be performed in the /home/labex/project/time-travel-hub repository.
+The temporal-artifact.txt file must contain at least one line describing the artifact, you can use the following text: "A glowing orb that seems to distort time around it. Further study is needed to understand its full capabilities and potential risks."
+The README.md file must have a new section titled "## Temporal Artifact Study" with at least one line of information.
+Use meaningful commit messages for all your commits.
+Ensure you're on the master branch after completing all operations.
+The artifact-study branch should still exist after merging.
+
+#### Summary
+In this challenge, you've put your Git branch wizardry to the test in a high-stakes time travel scenario. You created a separate reality (branch) to study a powerful temporal artifact, documented your findings, and successfully merged this critical information back into the main timeline. By using Git branches, you were able to experiment safely without risking the integrity of the main timeline.
+
+This exercise demonstrated the practical application of creating branches, making and committing changes, and merging branches. These skills are crucial for managing complex projects and collaborating with other developers, allowing you to work on features or experiments in isolation before integrating them into the main project.
+
+By keeping the artifact-study branch after merging, you've maintained a record of this separate line of investigation. This can be useful for future reference or if you need to continue your study of the temporal artifact.
+
+Remember, with great power comes great responsibility. Use your Git branch skills wisely as you continue your adventures through time and code!
+
+
+## lab6
+this command appends a new line to our "hello.txt" file. Let's understand the >> operator:  
+
+`>` would overwrite the entire file with the new content.  
+`>>` appends the new content to the end of the existing file, preserving the original content.  
+So, after running this command, "hello.txt" will contain two lines:
+
+>Bilkul sahi, bhai. git commit --amend sirf aur sirf LAST commit par apply hota hai.
+
+#### Reverting a Commit
+Sometimes, you make a commit and later realize it introduced a bug or you simply want to undo those changes. You might think of using git reset to go back in time and remove the commit. However, git reset can be destructive, especially if you've already pushed your changes or if others are working on the same branch. A safer and more collaborative way to undo changes is using git revert.
+
+git revert creates a new commit that undoes the changes introduced by a specific commit. It doesn't erase the original commit from history; instead, it adds a new commit that effectively reverses the effects of the unwanted commit. This preserves the history and is much safer for shared repositories.
+
+
+![alt text](image-1.png)
+
+lets use amend cmd
+
+
