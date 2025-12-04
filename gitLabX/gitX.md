@@ -135,4 +135,24 @@ git revert creates a new commit that undoes the changes introduced by a specific
 
 lets use amend cmd
 
+`git commit --amend -m "dec3 LEARNINGS"`
+
+![alt text](image-2.png)
+
+---
+
+###  revert vs reset
+
+***reset***  
+> - hard
+> - soft
+> - mixed(default) 
+
+
+***revert***  
+***rebase***  
+***Cherypick***  
+
+
+
 
