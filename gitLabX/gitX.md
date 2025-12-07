@@ -154,5 +154,26 @@ lets use amend cmd
 ***Cherypick***  
 
 
+🟦 CATEGORY–1 → CONTENT HISTORY CHANGE
 
 
+| Purpose                                  | Command                           | What it affects    | Dexter Analogy                    |
+| ---------------------------------------- | --------------------------------- | ------------------ | --------------------------------- |
+| Working file ko previous version pe lana | `git restore <file>`              | ❗ONLY file content | Episode same, scene rollback      |
+| Staged file ko unstage karna             | `git restore --staged <file>`     | Staging area       | Scene editing room se scene hatao |
+| Kisi purane commit se file nikalna       | `git checkout <commit> -- <file>` | Working file       | Purane episode ka scene import    |
+| Local file edit karna                    | manual edits                      | File content only  | Scene me dialogue/shot change     |
+
+
+🟥 CATEGORY–2 → COMMIT HISTORY CHANGE
+
+| Purpose                           | Command                    | What it affects          | Dexter Analogy                     |
+| --------------------------------- | -------------------------- | ------------------------ | ---------------------------------- |
+| Commits delete/rewind karna       | `git reset --soft`         | Timeline + staging       | Episodes removed, footage intact   |
+|                                   | `git reset --mixed`        | Timeline + local changes | Episodes removed, scenes floor pe  |
+|                                   | `git reset --hard`         | Timeline + files         | Episodes destroyed & scenes burned |
+| Past commit ka fix episode banana | `git revert <commit>`      | Adds new commit          | Aired episode ka correction add    |
+| Last commit modify karna          | `git commit --amend`       | Rewrite last commit      | Last episode ko dubara edit        |
+| Ek specific commit copy karna     | `git cherry-pick <commit>` | New commit added         | Alternate universe ka scene copy   |
+| Commits reorder, edit, delete     | `git rebase -i`            | Full history rewrite     | Whole season reorder / reshoot     |
+| Branch ko new base pe replay      | `git rebase branch`        | Rewrite commits          | Scenes ko latest script pe reshoot |
