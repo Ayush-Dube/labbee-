@@ -177,3 +177,51 @@ lets use amend cmd
 | Ek specific commit copy karna     | `git cherry-pick <commit>` | New commit added         | Alternate universe ka scene copy   |
 | Commits reorder, edit, delete     | `git rebase -i`            | Full history rewrite     | Whole season reorder / reshoot     |
 | Branch ko new base pe replay      | `git rebase branch`        | Rewrite commits          | Scenes ko latest script pe reshoot |
+
+
+
+## lab7 Git-stash 
+
+ 1. 
+    
+    ```cd ~/project
+    mkdir git-stash-lab
+    cd git-stash-lab
+    git init
+    echo "# Git Stash Lab" > README.md
+    git add README.md
+    git commit -m "Initial commit"
+    ```
+2. untrack file
+```
+echo "Some important notes" > notes.txt
+```
+do not add this 
+
+3. Creating a Branch from a Stash
+
+```
+Sometimes, you might realize that the changes you stashed should actually be on their own branch. Git makes this easy with the git stash branch command.
+```
+
+This feature is particularly useful when you've stashed some experimental changes and later decide they're worth pursuing on their own branch.  
+
+Remember, after creating a branch from a stash, you'll need to commit the changes if you want to keep them:
+
+**multiple stash**    
+As you work with Git, you might find yourself stashing multiple sets of changes. Git allows you to manage multiple stashes easily. Let's explore how to create, list, and manage multiple stashes.
+
+```
+# First stash
+echo "Change 1" >> README.md
+git stash push -m "First change"
+
+# Second stash with untracked file
+echo "Change 2" >> README.md
+echo "Note 2" >> notes.txt
+git stash push -u -m "Second change"
+
+# Third stash
+echo "Change 3" >> README.md
+git stash push -m "Third change"
+```
