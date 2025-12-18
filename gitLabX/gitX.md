@@ -225,3 +225,116 @@ git stash push -u -m "Second change"
 echo "Change 3" >> README.md
 git stash push -m "Third change"
 ```
+
+`git stash push -m "First change"`
+
+Iska matlab:
+
+push → changes ko stash stack me push karo  
+
+-m "first change" → stash ko message/label do  
+
+***but zyada clear + controllable hai***
+```
+stash@{0}: On main: first change
+stash@{1}: On main: login fix
+```
+
+Note: You'll notice we're now using git stash push instead of just git stash. The push subcommand is the modern, preferred way to create stashes, especially when you want to add custom messages with the -m flag. While git stash and git stash -u still work (they're shortcuts for git stash push and git stash push -u), using git stash push explicitly gives you more control and clarity, particularly when managing multiple stashes with descriptive messages.  
+
+Let's break down what we did:  
+
+Created first stash with a change to README.md  
+Created second stash with both a change to README.md and a new untracked file  
+Created third stash with another change to README.md  
+Used the -m flag to add descriptive messages  
+Used the -u flag for the second stash to include the untracked file  
+Now, let's list our stashes:  
+
+```
+stash@{0}: On master: Third change
+stash@{1}: On master: Second change
+stash@{2}: On master: First change
+```
+
+```
+git stash show stash@{1}
+```
+
+```
+stash@{0}: On master: Fifth change
+stash@{1}: On master: Fourth change
+stash@{2}: On master: Third change
+stash@{3}: On master: Second change
+stash@{4}: On master: First change
+```
+
+***Cleaning Up Stashes***
+```
+git stash drop stash@{2}
+```
+If you want to remove all your stashes at once, you can use:
+`git stash clear`
+
+Another useful command is git stash pop, which we saw earlier. It applies the most recent stash and then removes it from the stash list:
+`git stash pop`
+
+**Summary**  
+Congratulations, Git stash master! You've just added a powerful new tool to your Git toolkit. Let's recap the key concepts we've covered:
+
+Stashing Changes: You learned how to temporarily store your work-in-progress using git stash.
+Applying Stashed Changes: You discovered how to bring back your stashed changes using git stash apply and git stash pop.
+Creating Branches from Stashes: You saw how to turn a stashed set of changes into a new branch with git stash branch.
+Managing Multiple Stashes: You learned how to work with multiple stashes, applying and showing specific stashes as needed.
+Cleaning Up Stashes: You practiced good stash hygiene by learning how to remove individual stashes and clear all stashes.
+Git stash is an incredibly useful feature that allows you to quickly switch contexts without committing half-done work. It's perfect for those moments when you need to quickly switch tasks or branches.
+
+Remember, while stashes are useful, they're meant to be temporary. For longer-term work, it's usually better to commit your changes or create a new branch. Use stashes wisely, and they'll help you keep your workflow smooth and flexible.
+
+## lab8 -stash pratical 
+To complete this challenge, follow these steps:
+
+1. Navigate to the correct directory:
+    ```
+    cd ~/project/time-machine
+    ```
+
+2.  Stash changes including untracked files:
+    ```
+    git stash -u
+    ```
+
+3.  Fix the "critical bug" on the master branch:
+    ```
+    echo "Fixed: Temporal Flux Stabilized" > main-console.txt
+    git commit -am "Fix critical temporal flux bug"
+    ```
+4.  Create a new branch from the stash and apply changes:
+    ```
+    git stash branch future-upgrades
+    ```
+5.  Merge the changes from the master branch into the new branch:
+    ```
+    git merge master
+    ```
+6.  Verify the changes:
+    ```
+    # Check the master branch
+    git checkout master
+    cat main-console.txt
+
+    # Check the future-upgrades branch
+    git checkout future-upgrades
+    cat main-console.txt
+    cat flux-capacitor.txt
+    cat new-feature.txt
+    ```
+
+7. This solution accomplishes all the required tasks:
+
+- It stashes all changes, including untracked files, using git stash -u.
+- It fixes the bug in main-console.txt on the master branch.
+- It creates a new branch named future-upgrades from the stashed changes using git stash branch.
+- The original changes (both tracked and untracked) are present in the new branch because git stash branch applies the stashed changes to the new branch.
+
+After following these steps, the repository will be in the state described in the example, with the bug fixed on both branches and the work-in-progress changes present on the future-upgrades branch.
