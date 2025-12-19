@@ -338,3 +338,53 @@ To complete this challenge, follow these steps:
 - The original changes (both tracked and untracked) are present in the new branch because git stash branch applies the stashed changes to the new branch.
 
 After following these steps, the repository will be in the state described in the example, with the bug fixed on both branches and the work-in-progress changes present on the future-upgrades branch.
+
+In this challenge, you've practiced using Git stash in a simulated emergency scenario. You've learned how to quickly save your work-in-progress (including untracked files), switch contexts to fix a critical issue, and then create a new branch from your stashed changes. These skills are crucial for maintaining a smooth workflow when unexpected tasks arise, allowing you to juggle multiple responsibilities without losing your work or breaking your concentration.
+
+Remember, while Git stash is a powerful tool for temporarily storing changes, it's best used for short-term storage. For longer-term work or significant features, creating dedicated branches is often a better approach. Keep practicing these skills, and you'll be well-equipped to handle any time-bending development scenarios that come your way!
+
+
+## lab9-tags
+
+## lab10 - commit history 
+
+**Git's most powerful features is its ability to track and display the history of your project**  
+
+```
+cd ~/project
+mkdir git-history-lab
+cd git-history-lab
+git init
+```
+```
+echo "# Git History Lab" > README.md
+git add README.md
+git commit -m "Initial commit"
+
+echo "function hello() {" > script.js
+echo "  console.log('Hello, Git!');" >> script.js
+echo "}" >> script.js
+git add script.js
+git commit -m "Add hello function"
+
+echo "function goodbye() {" >> script.js
+echo "  console.log('Goodbye, Git!');" >> script.js
+echo "}" >> script.js
+git add script.js
+git commit -m "Add goodbye function"
+
+echo "This is a test file" > test.txt
+git add test.txt
+git commit -m "Add test file"
+
+echo "hello();" >> script.js
+echo "goodbye();" >> script.js
+git add script.js
+git commit -m "Call hello and goodbye functions"
+```
+
+We created a README file and made our initial commit.  
+We created a JavaScript file with a "hello" function and committed it.  
+We added a "goodbye" function to the same file and committed it.  
+We added a test file and committed it.  
+Finally, we modified our script to call both functions and committed the changes.  
