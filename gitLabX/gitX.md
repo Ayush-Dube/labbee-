@@ -388,3 +388,66 @@ We created a JavaScript file with a "hello" function and committed it.
 We added a "goodbye" function to the same file and committed it.  
 We added a test file and committed it.  
 Finally, we modified our script to call both functions and committed the changes.  
+
+
+## lab11 - git diff
+
+
+## lab12 - recover deleted files
+
+1. Navigate to the project directory:
+
+
+```
+cd ~/project/important-project
+
+git reflog
+
+1234567 HEAD@{0}: commit: Update project status
+abcdefg HEAD@{1}: commit: Oops, accidentally deleted important files
+9876543 HEAD@{2}: commit: Update algorithm TODO
+fedcba0 HEAD@{3}: commit: Add crucial data and algorithm
+...
+
+git checkout 9876543
+
+Tips: If you use git reset --hard 9876543, it will also work, but it will change the commit history. Using git checkout keeps the commit history intact.
+
+ls
+
+You should see important_algorithm.py and crucial_data.txt in the output.
+
+Copy the recovered files to the temporary folder:
+cp important_algorithm.py crucial_data.txt ~/project
+
+
+git checkout master
+
+mv ~/project/important_algorithm.py ~/project/crucial_data.txt .
+
+git add important_algorithm.py crucial_data.txt
+
+git commit -m "Recover deleted files"
+
+ls
+git status
+git log -1
+
+
+
+
+
+```
+
+
+
+2. Use git reflog to examine the repository's history:
+
+3. Identify the commit hash where the important files were last present. In this case, it's the commit with the hash 9876543 (message: "Update algorithm TODO").
+4. Use git checkout to restore the repository to the state just before the deletion:
+5. 
+6. 
+7. 
+8. 
+9. 
+10. 
