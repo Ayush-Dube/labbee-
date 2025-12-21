@@ -451,3 +451,12 @@ git log -1
 8. 
 9. 
 10. 
+
+
+## lab13 -clone
+
+**Shallow Clone with Depth**
+
+## lab14 - unstage a file
+
+`git rm --cashed fileName`
