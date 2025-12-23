@@ -460,3 +460,52 @@ git log -1
 ## lab14 - unstage a file
 
 `git rm --cashed fileName`
+
+
+## lab15 - ready a Git server from scratch 
+
+In this project, you will learn:
+
+- How to install and configure Git on a Linux system  
+- How to create and manage a user specifically for Git operations
+- How to generate and configure SSH keys to secure connections between your local machine and the Git server
+- How to initialize and manage a Git repository locally and on a server
+- How to perform version control operations such as committing changes and pushing them to a remote repository
+- How to verify the setup by cloning the repository to ensure everything is functioning correctly
+
+🏆 Achievements  
+After completing this project, you will be able to:  
+
+- Understand the fundamentals of installing and setting up Git, a distributed version control system, on a Linux environment
+- Handle user permissions and security in a Unix/Linux system for application-specific tasks
+- Utilize techniques for secure communication between machines using SSH keys, an essential skill for managing remote servers
+- Create and manage bare Git repositories which are used for server-side storage in Git operations
+- Commit and version your projects using Git commands, and push these changes to a remote server
+- Verify and troubleshoot common issues in remote repository management by cloning and inspecting the integrity of the data
+
+1. 
+ Update the apt package database to ensure we are working with the latest software list
+`sudo apt-get update`
+
+Install Git using apt-get
+`sudo apt-get install git`
+
+
+2. 
+```
+# Create a new user for Git operations
+sudo useradd labex-git
+sudo passwd labex-git
+
+
+sudo mkdir /home/labex-git
+sudo chown -R labex-git:labex-git /home/labex-git
+```
+
+3. Generating SSH Keys
+
+```
+# Generate an SSH key pair
+ssh-keygen -t rsa -C "labex@labex.io"
+```
+cat ~/.ssh/id_rsa.pub | ssh labex-git@localhost 'mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys'
