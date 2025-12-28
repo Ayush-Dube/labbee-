@@ -9,7 +9,7 @@ WHERE last_name IS NULL
 AND first_name LIKE '%e';
 ```
 
-###  Aggregate Functions
+###  **Aggregate Functions**
 
 >To derive insights from the data, you need to analyze and summarize this information.  
 
@@ -40,7 +40,7 @@ SELECT COUNT(DISTINCT name)as distinct_product FROM Products WHERE brand IN('Byt
 
 ```
 
-### **SQL SUM() Function**
+### *SQL SUM() Function*
 
 The SUM() function calculates the total sum of a numeric column.
 ```sql
@@ -48,4 +48,23 @@ The SUM() function calculates the total sum of a numeric column.
 
 SELECT SUM(salary) 
 FROM Employees;
+```
+
+<!-- SELECT SUM(age)/COUNT(age) from Employees; -->
+
+```sql
+--Write an SQL query to calculate the total quantity of products whose price is more than 160.
+--Also, the column name in the output should be total_products.
+
+SELECT SUM(quantity) as total_products FROM Products WHERE price > 160;
+```
+
+
+
+
+## organize data effectively using SQL
+` ORDER BY `
+
+```sql
+SELECT * FROM Customers ORDER BY name DESC;
 ```
