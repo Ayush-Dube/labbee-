@@ -68,3 +68,38 @@ SELECT SUM(quantity) as total_products FROM Products WHERE price > 160;
 ```sql
 SELECT * FROM Customers ORDER BY name DESC;
 ```
+
+# conflict ❓❓
+```sql 
+SELECT name, purchase_amount 
+FROM customers
+ORDER BY purchase_amount DESC, name ASC;
+```
+
+
+## ***Group by***
+
+What if you're asked to find the average purchase amount by country? Simply using the AVG() function isn't enough.
+
+This is where the GROUP BY clause comes in handy in SQL. It helps you answer questions like:
+
+- What is the average purchase amount of customers in each country?
+- What are the highest and lowest purchase amounts in each country?
+
+
+```sql
+-- Group data by different country
+
+SELECT country, purchase_amount
+FROM Customers
+GROUP BY country;
+
+country	| purchase_amount
+Canada	| 6000
+UK	    | 2000
+USA	    | 1000
+```
+
+>The output shows the country and purchase amount of the first customer in each country, but this isn't a meaningful summary.
+
+>Therefore, the GROUP BY clause is almost always used in conjunction with aggregate functions such as SUM(), MIN(), COUNT(), etc., to summarize data.
