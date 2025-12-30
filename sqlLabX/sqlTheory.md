@@ -103,3 +103,27 @@ USA	    | 1000
 >The output shows the country and purchase amount of the first customer in each country, but this isn't a meaningful summary.
 
 >Therefore, the GROUP BY clause is almost always used in conjunction with aggregate functions such as SUM(), MIN(), COUNT(), etc., to summarize data.
+
+
+
+### However, when using GROUP BY with aggregate functions, the WHERE clause doesn't work, resulting in an error.
+
+
+```sql
+Write an SQL query to find the total sales for each product that exceeds 1700. The query should return the product name and total sales for each product.
+
+Hint: The total sales of a product is calculated by multiplying the price and quantity for each sale.
+
+
+SELECT product ,SUM(quantity * price) as total_sales
+FROM Sales
+GROUP BY product
+HAVING SUM(quantity * price)>1700;
+```
+
+
+
+## SQL CASE
+
+
+it is similar to if-else / switch case of progrmaming language.
