@@ -127,3 +127,15 @@ HAVING SUM(quantity * price)>1700;
 
 
 it is similar to if-else / switch case of progrmaming language.
+
+```sql
+-- Write your SQL code below
+SELECT *,
+    CASE
+        WHEN country IN('USA','Canada') THEN 'North America'
+        WHEN country IN('Sweden','Czech Republic') THEN 'Europe'
+        ELSE 'Other'
+
+    END as continent
+FROM Customers;
+```
