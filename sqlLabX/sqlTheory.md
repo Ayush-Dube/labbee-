@@ -139,3 +139,155 @@ SELECT *,
     END as continent
 FROM Customers;
 ```
+
+```sql
+SELECT first_name,country,
+    CASE
+        WHEN country IN('USA','Canada') THEN 'North America'
+        WHEN country IN('Sweden','Czech Republic') THEN 'Europe'
+        ELSE 'Other'
+
+    END as continent
+FROM Customers
+WHERE age < 26;
+```
+
+**TEST**  
+Questions to Answer  
+In this recap, you'll explore the following questions about the company's employees:  
+
+1. High-Earning Employees
+Which employees have the highest salaries, listed in descending order?
+2. Salary Insights
+What is the salary range (highest and lowest) in each department?
+3. Workforce Distribution
+How many employees are there in each department?
+Which departments have fewer than two employees?
+4. Targeted Training and Events
+Which employees' names contain the letter "J"?
+Which employees are eligible for promotion based on their years of service?
+
+
+
+
+🔹 COUNT(*)
+
+- Har row count karta hai
+- NULL ho ya na ho → row count hogi
+- Safest & standard
+
+🔹 COUNT(column_name)
+
+- Sirf non-NULL values count karta hai
+- Agar column mein NULL hua → wo row ignore ho jayegi
+
+
+
+Visuallyy
+```
+Employees
+------------------------------------------------
+id | name     | department
+------------------------------------------------
+1  | Peter    | Operations
+2  | Meghan   | Sales
+3  | Jow      | Tech
+4  | Mike     | Sales
+5  | Mary     | Operations
+7  | Elon     | Tech
+8  | Samantha | Marketing
+9  | John     | Sales
+```
+
+2️⃣ GROUP BY department kya karta hai?  
+```
+OPERATIONS bucket
+-----------------
+Peter
+Mary
+
+
+SALES bucket
+------------
+Meghan
+Mike
+John
+
+
+TECH bucket
+-----------
+Jow
+Elon
+
+
+MARKETING bucket
+----------------
+Samantha
+
+```
+
+whereas 
+```
+SELECT department, COUNT(*)
+FROM Employees
+GROUP BY department;
+```
+
+```
+
+department   | count
+--------------------
+Operations   | 2
+Sales        | 3
+Tech         | 2
+Marketing    | 1
+
+```
+
+```
+COUNT(*)        → counts rows
+COUNT(column)   → counts NON-NULL values only
+```
+
+```sql
+Meghan
+Mike
+John
+NULL
+
+--COUNT(*)
+Sales → 4
+
+--COUNT(name)
+Sales → 3   ❌ (NULL ignore ho gaya)
+
+--Rule
+COUNT(*)        → counts rows
+COUNT(column)   → counts NON-NULL values only
+
+
+--GROUP BY pehle rows ko groups mein baantta hai phir aggregation un groups par kaam karti hai
+
+
+FROM
+ ↓
+WHERE
+ ↓
+GROUP BY
+ ↓
+AGGREGATION (COUNT, SUM, AVG...)
+ ↓
+SELECT
+ ↓
+ORDER BY
+
+➡️ Isliye SELECT * + GROUP BY ❌ invalid hota hai
+
+```
+
+```
+GROUP BY = bucket banana
+COUNT/SUM = bucket ka hisaab
+
+```
+
