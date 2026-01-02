@@ -263,7 +263,7 @@ Sales → 3   ❌ (NULL ignore ho gaya)
 
 --Rule
 COUNT(*)        → counts rows
-COUNT(column)   → counts NON-NULL values only
+COUNT(column)   → counts NON-NULL values onlye
 
 
 --GROUP BY pehle rows ko groups mein baantta hai phir aggregation un groups par kaam karti hai
@@ -291,3 +291,73 @@ COUNT/SUM = bucket ka hisaab
 
 ```
 
+## JOINS
+
+**SQL INNER JOIN**
+
+An INNER JOIN combines records from two tables where the specified condition is met, excluding unmatched rows from both tables
+
+
+![alt text](image.png)
+![alt text](image-1.png)
+
+As a data analyst, you won't often be asked to perform INNER JOINs directly. Instead, you may need to answer questions like:
+
+- How can you list customers along with their cities and purchased products?
+- How can you find products bought by customers in New York?
+
+---
+<div align="center"> 
+    <img src='image-2.png' width=400px >
+</div>
+
+
+<!-- ![alt text](image-2.png) -->
+```sql
+SELECT e.first_name,e.last_name,d.manager
+FROM Employees e
+INNER  JOIN Departments d 
+ON  e.department = d.department_name
+```
+<div align="center"> 
+    <img src='image-3.png' width=250px >
+</div>
+
+
+
+### SQL RIGHT JOIN
+A RIGHT JOIN is similar to a LEFT JOIN, except it selects all the rows from the right table and any matching rows from the left table.
+
+
+
+## SUB Query 
+
+The subquery (SELECT AVG(GPA) FROM Students) calculates the average score once. This average is then added as a new column, average_gpa, to each student's record.
+
+Subqueries are often used over joins when working with aggregate functions that require a subset of data to be computed first. Conversely, joins are preferred when performance is a concern with large datasets.
+
+
+## Insert data
+
+```
+INSERT INTO Students (id, name, course_id, GPA)
+VALUES (6, 'Emma Stone', 'C101', 3.8);
+
+
+
+-- Insert three rows
+
+INSERT INTO 
+    Students (id, name, course_id, GPA)
+VALUES
+    (15, 'Amelia Charles', 'C104', 3.2),
+    (12, 'Jaxon Gomez', 'C101', 2.9),
+    (13, 'Mike Leon', 'C103', 3.4);    
+```
+---
+
+```
+UPDATE Students
+SET GPA = 3.95
+WHERE id = 3;
+```
