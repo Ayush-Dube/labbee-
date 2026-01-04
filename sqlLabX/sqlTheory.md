@@ -361,3 +361,14 @@ UPDATE Students
 SET GPA = 3.95
 WHERE id = 3;
 ```
+
+## Working with Tables
+
+As the startup grows, relying on spreadsheets for storing customer details becomes impractical. In this chapter, you'll cover:
+
+Creating tables: Setting up a table to store customer details like names and addresses.
+Altering tables: Making changes to the table, such as adding new columns to track additional information.
+Dropping tables: Removing tables that are no longer necessary.
+Before creating tables, it's important to understand SQL data types. Data types determine what kind of values a column can hold.
+
+To learn more about data types, please refer to this article.
