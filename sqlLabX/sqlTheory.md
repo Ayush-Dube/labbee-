@@ -372,3 +372,28 @@ Dropping tables: Removing tables that are no longer necessary.
 Before creating tables, it's important to understand SQL data types. Data types determine what kind of values a column can hold.
 
 To learn more about data types, please refer to this article.
+
+
+```sql
+CREATE TABLE Customers (
+        id int,
+        first_name VARCHAR(50),
+        last_name VARCHAR(50),
+        age int,
+        country VARCHAR(50)
+);
+
+
+
+INSERT INTO 
+    Customers (id,first_name,last_name,age,country)
+VALUES
+    (1,'Ethan','Carter',30,'Australia'),
+    (2,'Sofia','Patel',27,'India');
+
+
+
+SELECT * FROM Customers;
+```
+
+### CREATE TABLE IF NOT EXISTS
