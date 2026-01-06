@@ -397,3 +397,55 @@ SELECT * FROM Customers;
 ```
 
 ### CREATE TABLE IF NOT EXISTS
+
+```
+CREATE TABLE IF NOT EXISTS Customers (
+    id int,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    age int,
+    country VARCHAR(50)
+);
+```
+
+Now, even if the Customers table already exists, the query will not run unnecessarily, preventing errors.
+
+
+## Modify Table
+
+### ADD COLUMN
+```sql
+-- Add a column
+
+ALTER TABLE Customers
+ADD COLUMN city VARCHAR(200);
+```
+
+### edit table
+
+While working with the Customers table, you notice that some customer names are getting cut off because the first_name column is limited to 50 characters.
+
+To fix this, you can expand its character limit to store longer names:
+
+```sql
+
+-- Modify a column
+
+ALTER TABLE Customers
+MODIFY COLUMN first_name VARCHAR(100);
+```
+
+Now, the first_name column can store longer names, preventing data loss.
+
+>Note: The database system we are using is SQLite, which does not support modifying columns. However, other popular database systems do support them.
+
+
+
+### Rename column name
+
+```
+-- Rename a column
+
+ALTER TABLE Customers
+RENAME COLUMN id TO customer_id;
+```
