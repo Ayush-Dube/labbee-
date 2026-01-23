@@ -449,3 +449,5 @@ Now, the first_name column can store longer names, preventing data loss.
 ALTER TABLE Customers
 RENAME COLUMN id TO customer_id;
 ```
+
+
