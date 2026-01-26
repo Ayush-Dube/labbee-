@@ -336,10 +336,29 @@ The subquery (SELECT AVG(GPA) FROM Students) calculates the average score once. 
 
 Subqueries are often used over joins when working with aggregate functions that require a subset of data to be computed first. Conversely, joins are preferred when performance is a concern with large datasets.
 
-
-## Insert data
+```sql
+SELECT name
+FROM Students
+WHERE course_id IN 
+(
+    SELECT id 
+    FROM Courses 
+    WHERE course_name = 'Mathematics'
+);
 
 ```
+
+
+
+## Insert data🔽
+
+Understanding SQL well means you can do more than just run queries; you also need to know how to set up and change the database as needed.
+
+- **Inserting** data into tables
+- **Updating** data in tables
+- **Deleting** data from tables
+
+```sql
 INSERT INTO Students (id, name, course_id, GPA)
 VALUES (6, 'Emma Stone', 'C101', 3.8);
 
@@ -356,13 +375,53 @@ VALUES
 ```
 ---
 
-```
+
+### *Update existing row*
+
+```sql
 UPDATE Students
 SET GPA = 3.95
 WHERE id = 3;
 ```
 
-## Working with Tables
+1.  What if values are mismatched?
+    - ❌ ERROR (most of the time)
+2. What if insufficient values are given?
+    - ❌ ERROR
+3. When can SQL allow fewer values? ✅
+    - Case A: Column has DEFAULT
+    - Case B: Column allows NULL
+    - Case C: Column is NOT NULL ❌
+4. What if values are extra?
+    - error
+
+
+### ❓QUESTIONS
+
+```sql
+CREATE TABLE Users (
+  id INT PRIMARY KEY,
+  name VARCHAR(50) NOT NULL,
+  email VARCHAR(100),
+  status VARCHAR(20) DEFAULT 'ACTIVE'
+);
+
+---
+
+INSERT INTO Users (id, name)
+VALUES (1, 'Rahul');
+
+```
+
+1️⃣ Will this query WORK or FAIL?  
+2️⃣ Final values kya hongi in table for:
+
+my ans- fail,because email is missing and null is not set
+
+**BUT**
+🔻By default, every column is NULLABLE
+
+### Working with Tables
 
 As the startup grows, relying on spreadsheets for storing customer details becomes impractical. In this chapter, you'll cover:
 
@@ -451,3 +510,4 @@ RENAME COLUMN id TO customer_id;
 ```
 
 
+start gain
