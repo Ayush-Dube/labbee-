@@ -580,3 +580,35 @@ start gain
 - Rename a column (e.g., to rename id to customer_id)
 - Delete a column (e.g., to remove the last_name)
 - Rename a table (e.g., to rename Customers table to Users)
+
+
+# CONSTRAINTS
+
+NULL
+NOT NULL 
+PRIMARY
+FORIEGN
+
+## PRIMARY KEY 
+A primary key is a column or a set of columns uniquely identifying each row in a table. This constraint enforces both the NOT NULL and UNIQUE constraints.
+
+```sql
+CREATE TABLE Concerts (
+    performer_name VARCHAR(255) NOT NULL,
+    concert_datetime DATETIME UNIQUE,
+    concert_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    genre_id INTEGER,
+    FOREIGN KEY (genre_id) REFERENCES Genres(id)
+);
+
+CREATE TABLE Genres (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    genre_name VARCHAR(255) NOT NULL
+);
+```
+
+## WINDOW FUNCTIONS
+
+**Que**-"Can you help us understand how the salaries are spread out in the company? We want to know if some people are earning more or less than others on average."
+
+Your job is to calculate the average salary of everyone in the company and then compare each person's salary to this average.
