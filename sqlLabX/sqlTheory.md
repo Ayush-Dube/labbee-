@@ -421,7 +421,64 @@ my ans- fail,because email is missing and null is not set
 **BUT**
 🔻By default, every column is NULLABLE
 
-### Working with Tables
+
+# SQL INSERT — NULL vs DEFAULT vs NOT NULL (Quick Reference)
+
+## 1. NULL
+- NULL ka matlab: **value unknown / missing**
+- NULL ≠ 0 ≠ empty string
+- Agar column NULLABLE hai:
+  - value na do → SQL **auto NULL** set karta hai
+  - `NULL` explicitly likhna optional hai
+
+### Example
+```sql
+email VARCHAR(100)
+
+INSERT INTO Users (id, name)
+VALUES (1, 'Amit');
+-- email = NULL
+```
+
+2. NOT NULL
+
+- NOT NULL column mandatory hota hai
+
+- Na value chhod sakte ho
+
+- Na NULL assign kar sakte ho
+
+```sql
+name VARCHAR(50) NOT NULL
+
+INSERT INTO Users (id)
+VALUES (1);
+-- ❌ ERROR
+
+```
+
+
+3. DEFAULT
+
+DEFAULT = system-provided fallback value
+
+Agar value omit ki → DEFAULT auto apply hota hai
+
+```sql
+status VARCHAR(20) DEFAULT 'ACTIVE'
+INSERT INTO Users (id, name)
+VALUES (1, 'Rahul');
+-- status = 'ACTIVE'
+
+```
+```
+Missing value →
+  NOT NULL & no DEFAULT → ERROR
+  DEFAULT present → DEFAULT used
+  NULL allowed → NULL auto
+```
+
+## 📋Working with Tables
 
 As the startup grows, relying on spreadsheets for storing customer details becomes impractical. In this chapter, you'll cover:
 
@@ -511,3 +568,15 @@ RENAME COLUMN id TO customer_id;
 
 
 start gain
+
+
+>Note: Like the INSERT INTO statement, the UPDATE statement does not display any output; it simply modifies the existing table. You can use a SELECT query or check the Available Tables section to verify your updates.
+
+
+## ALTER TABLE
+
+- Add a new column (e.g., to store customer city)
+- Modify a column (e.g., to increase the name length)
+- Rename a column (e.g., to rename id to customer_id)
+- Delete a column (e.g., to remove the last_name)
+- Rename a table (e.g., to rename Customers table to Users)
