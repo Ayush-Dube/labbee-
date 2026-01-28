@@ -612,3 +612,16 @@ CREATE TABLE Genres (
 **Que**-"Can you help us understand how the salaries are spread out in the company? We want to know if some people are earning more or less than others on average."
 
 Your job is to calculate the average salary of everyone in the company and then compare each person's salary to this average.
+
+
+
+
+❓❓
+```
+SELECT *,
+    ROW_NUMBER() OVER (PARTITION BY country ORDER BY age DESC) AS row_number,
+    RANK() OVER (PARTITION BY country ORDER BY age DESC) AS rank,
+    DENSE_RANK() OVER (PARTITION BY country ORDER BY age DESC) AS dense_rank
+FROM Customers;
+
+```
