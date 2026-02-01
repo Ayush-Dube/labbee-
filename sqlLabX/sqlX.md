@@ -23,3 +23,47 @@ sudo
 ![alt text](image-4.png)
 
 tee comman❓❓❓❓
+
+>use of sleep command
+
+1. Using   `INTO OUTFILE`
+    - permission issue
+    - no overwrite
+
+2. Redirect output to a file using `-e`
+    - best 
+    - less likely to cause issue
+ 
+> Explore \G , \t , \ , -e , -p  
+
+3. tee command
+
+
+### BEST & SAFE OPTION (Industry preferred)
+```sql
+mysql -u root -p mydb \
+-e "SELECT * FROM students;" \
+> /home/labex/project/outG.txt
+```
+table format
+
+```sql
+mysql -u root -p mydb -t \
+-e "SELECT * FROM students;" \
+> outG.txt
+
+```
+
+## ✨Lab2
+
+By completing this lab, you will be able to:
+
+- Create and drop databases using various methods
+- Select and switch between databases
+- Retrieve important metadata about your MySQL server and databases
+- Understand the case-sensitivity of database names in MySQL
+
+
+>🧠  
+There is no difference in database creation whether executed from (none) state or another database.  
+CREATE DATABASE works at server level, not database level.
