@@ -67,3 +67,166 @@ By completing this lab, you will be able to:
 >🧠  
 There is no difference in database creation whether executed from (none) state or another database.  
 CREATE DATABASE works at server level, not database level.
+
+```
+CREATE DATABASE urdBName;
+```
+
+### Case-Sensitivity of Database Names
+An important concept to understand in MySQL is that database names are case-sensitive. This means that 'Hello_World' and 'hello_world' are treated as two different databases. Let's demonstrate this:
+
+```
+```
+
+>Always use lowercase DB names
+
+Note: Be extremely cautious when using the DROP DATABASE command. It permanently deletes the database and all its contents without asking for confirmation. In a production environment, you would typically have safeguards and backups in place before performing such operations.
+
+Dropping a Database Using mysqladmin
+
+```sql
+mysqladmin -u root -p drop hello_world2
+---
+Enter password:
+Dropping the database is potentially a very bad thing to do.
+Any data stored in the database will be destroyed.
+
+Do you really want to drop the 'hello_world2' database [y/N] y
+Database "hello_world2" dropped
+```
+
+next
+
+```
+USE mysql;
+SHOW TABLES;
+```
+
+Version
+
+`SELECT VERSION();`
+```
+
+MariaDB [mysql]> SELECT VERSION();
++----------------------------------+
+| VERSION()                        |
++----------------------------------+
+| 10.6.12-MariaDB-0ubuntu0.22.04.1 |
++----------------------------------+
+1 row in set (0.000 sec)
+```
+
+
+Present DB
+```
+MariaDB [mysql]> SELECT DATABASE();
++------------+
+| DATABASE() |
++------------+
+| mysql      |
++------------+
+1 row in set (0.000 sec)
+```
+
+Present User
+
+```sql
+SELECT USER();
+
+MariaDB [mysql]> SELECT USER();
++----------------+
+| USER()         |
++----------------+
+| root@localhost |
++----------------+
+1 row in set (0.000 sec)
+```
+
+`SHOW STATUS LIKE 'Questions';`
+
+```
+MariaDB [mysql]> SHOW STATUS LIKE 'Questions';
++---------------+-------+
+| Variable_name | Value |
++---------------+-------+
+| Questions     | 15    |
++---------------+-------+
+1 row in set (0.001 sec)
+```
+
+Summary  
+In this lab, we've covered fundamental aspects of database management in MySQL:
+
+Creating databases using both the MySQL client and the mysqladmin tool
+Listing existing databases and understanding their purposes
+Understanding the case-sensitivity of database names in MySQL
+Dropping databases safely and the importance of caution when doing so
+Selecting and switching between databases
+Retrieving important metadata about the MySQL server and databases
+
+
+## ✨Lab3
+
+Mysql DataTypes
+
+Objectives
+By completing this lab, you will be able to:
+
+- Understand MySQL's core data types and when to use them
+- Create tables with appropriate column definitions
+- Modify existing table structures
+- Remove tables when they're no longer needed
+- View and understand table metadata
+
+
+
+```
+CREATE TABLE products (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    description TEXT,
+    weight FLOAT,
+    in_stock BOOLEAN,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+```
+`SHOW TABLES;`
+```sql
++--------------+---------------+------+-----+---------------------+-------------------------------+
+| Field        | Type          | Null | Key | Default             | Extra                         |
++--------------+---------------+------+-----+---------------------+-------------------------------+
+| id           | int(11)       | NO   | PRI | NULL                | auto_increment                |
+| name         | varchar(100)  | NO   |     | NULL                |                               |
+| price        | decimal(10,2) | NO   |     | NULL                |                               |
+| description  | text          | YES  |     | NULL                |                               |
+| weight       | float         | YES  |     | NULL                |                               |
+| in_stock     | tinyint(1)    | YES  |     | NULL                |                               |
+| created_at   | datetime      | YES  |     | current_timestamp() |                               |
+| last_updated | timestamp     | NO   |     | current_timestamp() | on update current_timestamp() |
++--------------+---------------+------+-----+---------------------+-------------------------------+
+8 rows in set (0.001 sec)
+```
+
+
+`SHOW CREATE TABLE inventory_items;`
+
+```sql
+MariaDB [store]> SHOW CREATE TABLE inventory_items;
+
+<!-- Sample output -->
+
+CREATE TABLE `inventory_items` (
+  `item_id` int(11) NOT NULL AUTO_INCREMENT,
+  `category_id` int(11) DEFAULT NULL,
+  `sku` varchar(20) NOT NULL,
+  `item_name` varchar(100) NOT NULL,
+  `quantity` int(11) NOT NULL CHECK (`quantity` >= 0),
+  `unit_price` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`item_id`),
+  UNIQUE KEY `sku` (`sku`),
+  KEY `category_id` (`category_id`),
+  CONSTRAINT `inventory_items_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci
+```
