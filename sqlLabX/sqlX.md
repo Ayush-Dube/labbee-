@@ -230,3 +230,28 @@ CREATE TABLE `inventory_items` (
   CONSTRAINT `inventory_items_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci
 ```
+
+
+### DESCRIBE vs SHOW CREATE TABLE (MySQL / MariaDB)
+
+DESCRIBE inventory_items;
+- Quick summary of table structure
+- Shows: column name, data type, NULL/NOT NULL, key (PK/UK), default, extra
+- Does NOT show: full SQL, indexes detail, engine, charset
+- Used for: daily dev work, quick checks
+
+SHOW CREATE TABLE inventory_items;
+- Shows exact CREATE TABLE SQL
+- Includes: columns, constraints (PK/FK/UNIQUE), indexes, engine, charset, collation
+- Used for: migrations, debugging production issues, recreating tables, interviews
+
+Key Difference:
+- DESCRIBE = structural overview
+- SHOW CREATE TABLE = complete schema definition
+
+Analogy:
+- DESCRIBE → X-ray report
+- SHOW CREATE TABLE → DNA + birth certificate
+
+Interview Tip:
+Use DESCRIBE for quick info, SHOW CREATE TABLE for full schema & constraints.
