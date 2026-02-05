@@ -255,3 +255,65 @@ Analogy:
 
 Interview Tip:
 Use DESCRIBE for quick info, SHOW CREATE TABLE for full schema & constraints.
+
+
+### Modifying Table Structure
+
+1. Add a new column:
+```
+ALTER TABLE products
+ADD COLUMN manufacturer VARCHAR(100) AFTER name;
+```
+
+2. Modify an existing column:
+```
+ALTER TABLE products
+MODIFY COLUMN description VARCHAR(500) NOT NULL DEFAULT 'No description available';
+```
+
+3. Rename column
+```
+ALTER TABLE products
+CHANGE COLUMN weight product_weight DECIMAL(8,2);
+```
+This command renames the weight column to product_weight and changes its data type to a decimal number with 8 total digits and 2 decimal places.
+
+4. Drop a column
+```
+ALTER TABLE products
+DROP COLUMN in_stock;
+```
+
+## Dropping Tables and Cleanup
+
+In this final step, we'll learn how to safely remove tables when they're no longer needed. This is an important skill, but it should be used with caution as dropping a table permanently deletes all its data.
+
+Before dropping a table, it's good practice to:
+
+1. Verify you're in the correct database
+2. Check if the table exists
+3. Ensure you have a backup if needed
+
+```
+SELECT DATABASE();
+SHOW TABLES;
+
+DROP TABLE IF EXISTS inventory_items;
+
+
+```
+
+safely drop a table, we can use the IF EXISTS clause:
+
+```sql
+ DROP TABLE IF EXISTS inventory_items; 
+```
+
+>Note that we need to drop tables with foreign key constraints first. If we tried to drop the categories table first, we would get an error because inventory_items references it.
+
+Now we can drop the remaining tables:
+```sql
+DROP TABLE IF EXISTS categories;
+DROP TABLE IF EXISTS products;
+```
+
