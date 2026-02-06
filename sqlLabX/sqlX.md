@@ -317,3 +317,41 @@ DROP TABLE IF EXISTS categories;
 DROP TABLE IF EXISTS products;
 ```
 
+## ✨LAB4
+
+```sql
+
+
+MariaDB [(none)]> CREATE DATABASE bookstore if exits bookstore;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'if exits bookstore' at line 1
+MariaDB [(none)]> USE bookstore;
+Database changed
+MariaDB [bookstore]> CREATE TABLE books (
+    -> id INT(11) AUTO_INCERMENT,
+    -> title VARCHAR(200) ----
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '
+title VARCHAR(200) --' at line 2
+MariaDB [bookstore]> CREATE TABLE books (id INT(11) PRIMARY KEY AUTO_INCREMENT);
+Query OK, 0 rows affected (0.004 sec)
+
+MariaDB [bookstore]> DESCRIBE books;
++-------+---------+------+-----+---------+----------------+
+| Field | Type    | Null | Key | Default | Extra          |
++-------+---------+------+-----+---------+----------------+
+| id    | int(11) | NO   | PRI | NULL    | auto_increment |
++-------+---------+------+-----+---------+----------------+
+1 row in set (0.001 sec)
+
+MariaDB [bookstore]> ALTER TABLE books ADD COLUMN title VARCHAR(200) NOT NULL;DESCRIBE books;
+Query OK, 0 rows affected (0.004 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
++-------+--------------+------+-----+---------+----------------+
+| Field | Type         | Null | Key | Default | Extra          |
++-------+--------------+------+-----+---------+----------------+
+| id    | int(11)      | NO   | PRI | NULL    | auto_increment |
+| title | varchar(200) | NO   |     | NULL    |                |
++-------+--------------+------+-----+---------+----------------+
+2 rows in set (0.001 sec)
+```
