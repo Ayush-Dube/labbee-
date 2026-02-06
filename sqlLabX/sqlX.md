@@ -354,4 +354,164 @@ Records: 0  Duplicates: 0  Warnings: 0
 | title | varchar(200) | NO   |     | NULL    |                |
 +-------+--------------+------+-----+---------+----------------+
 2 rows in set (0.001 sec)
+
+
+
+----------------------
+
+
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+MariaDB [bookstore]> ALTER TABLE books 
+    -> ADD COLUMN price decimal(5,2),
+    -> ADD COLUMN publicatoin_date DATE,
+    -> ADD COLUMN page_count int(11),
+    -> ADD COLUMN description TEXT,
+    -> ADD COLUMN quantity_in_stock INT(11);
+Query OK, 0 rows affected (0.004 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [bookstore]> SHOW TABLES;
++---------------------+
+| Tables_in_bookstore |
++---------------------+
+| books               |
++---------------------+
+1 row in set (0.000 sec)
+
+MariaDB [bookstore]> DESCRIBE books;
++-------------------+--------------+------+-----+---------+----------------+
+| Field             | Type         | Null | Key | Default | Extra          |
++-------------------+--------------+------+-----+---------+----------------+
+| id                | int(11)      | NO   | PRI | NULL    | auto_increment |
+| title             | varchar(200) | NO   |     | NULL    |                |
+| price             | decimal(5,2) | YES  |     | NULL    |                |
+| publicatoin_date  | date         | YES  |     | NULL    |                |
+| page_count        | int(11)      | YES  |     | NULL    |                |
+| description       | text         | YES  |     | NULL    |                |
+| quantity_in_stock | int(11)      | YES  |     | NULL    |                |
++-------------------+--------------+------+-----+---------+----------------+
+7 rows in set (0.001 sec)
+
+MariaDB [bookstore]> 
+```
+
+## ✨LAB5
+
+- INSERT statements for adding single and multiple rows of data
+- SELECT queries for retrieving and formatting data
+- UPDATE statements for modifying existing data
+- DELETE statements for removing data from tables
+
+
+
+
+```sql
+MariaDB [store]> SELECT 
+    -> name AS product_name,
+    -> price AS retail_price,
+    -> price * .8 AS sale_price
+    -> FROM products;
++--------------+--------------+------------+
+| product_name | retail_price | sale_price |
++--------------+--------------+------------+
+| Coffee Maker |        49.99 |     39.992 |
+| Toaster      |        29.99 |     23.992 |
+| Blender      |        79.99 |     63.992 |
+| Microwave    |       129.99 |    103.992 |
++--------------+--------------+------------+
+4 rows in set (0.000 sec)
+```
+
+## ✨Lab6
+
+```sql
+labex:project/ $ sudo mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 36
+Server version: 10.6.18-MariaDB-0ubuntu0.22.04.1 Ubuntu 22.04
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| cinema             |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.001 sec)
+
+MariaDB [(none)]> USE cinema;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MariaDB [cinema]> SHOW TABLES;
++------------------+
+| Tables_in_cinema |
++------------------+
+| movies           |
++------------------+
+1 row in set (0.000 sec)
+
+--------------------
+ERROR part
+
+MariaDB [cinema]> SELECT * FROM movies;
+Empty set (0.000 sec)
+
+MariaDB [cinema]> DESCRIBE movies;
++--------------+--------------+------+-----+---------+----------------+
+| Field        | Type         | Null | Key | Default | Extra          |
++--------------+--------------+------+-----+---------+----------------+
+| id           | int(11)      | NO   | PRI | NULL    | auto_increment |
+| title        | varchar(200) | NO   |     | NULL    |                |
+| release_year | int(11)      | YES  |     | NULL    |                |
+| genre        | varchar(50)  | YES  |     | NULL    |                |
+| price        | decimal(5,2) | NO   |     | NULL    |                |
++--------------+--------------+------+-----+---------+----------------+
+5 rows in set (0.001 sec)
+
+MariaDB [cinema]> INSERT INTO movies (id,title,release_year,genre,price)
+    -> VALUES 
+    -> ('Avatar',2009,Science Fiction,12.99),
+    -> ('The Dark Knight',2008,Action,11.99),
+    -> ('Inception',2010,Science Fiction,12.99);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'Fiction,12.99),
+('The Dark Knight',2008,Action,11.99),
+('Inception',2010,Scie...' at line 3
+MariaDB [cinema]> 
+
+---------------
+MariaDB [cinema]> INSERT INTO movies (id,title,release_year,genre,price)
+    -> VALUES 
+    -> ('Avatar',2009,Science Fiction,12.99),
+    -> ('The Dark Knight',2008,Action,11.99),
+    -> ('Inception',2010,Science Fiction,12.99);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'Fiction,12.99),
+('The Dark Knight',2008,Action,11.99),
+('Inception',2010,Scie...' at line 3
+MariaDB [cinema]> INSERT INTO movies(id,title,release_year,genre,price) VALUES
+    -> ('Avatar',2009,'Science Fiction',12.99),
+    -> ('The Dark Knight',2008,'Action,11.99'),
+    -> ('Inception',2010,'Science Fiction',12.99);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+MariaDB [cinema]> '
+
+-----------------
+
+ERROR 1136 (21S01): Column count doesn't match value count at row 2
+MariaDB [cinema]> INSERT INTO movies(id,title,release_year,genre,price) VALUES (1,'Avatar',2009,'Science Fiction',12.99), (2,'The Dark Knight',2008,'Action',11.99), (3,'Inception',2010,'Science Fiction',12.99);
+Query OK, 3 rows affected (0.000 sec)
+Records: 3  Duplicates: 0  Warnings: 0'
+------------
+
+
+
+
 ```
