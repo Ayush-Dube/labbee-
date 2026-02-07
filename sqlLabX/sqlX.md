@@ -515,3 +515,80 @@ Records: 3  Duplicates: 0  Warnings: 0'
 
 
 ```
+
+
+
+## ✨Lab7 
+
+```sql
+
+
+MariaDB [bookstore]> SELECT *  FROM books ORDER BY price ;
++----+----------------------------+----------------+-----------+-------+------------------+-------+----------+
+| id | title                      | author         | genre     | price | publication_year | pages | in_stock |
++----+----------------------------+----------------+-----------+-------+------------------+-------+----------+
+|  5 | Mystery at SQL Lake        | James Anderson | Mystery   | 19.99 |             2023 |   280 |        1 |
+| 10 | SQL Mystery Tales          | Jennifer White | Mystery   | 22.99 |             2021 |   290 |        1 |
+|  6 | The Lost Query             | Patricia Lee   | Mystery   | 24.99 |             2022 |   310 |        1 |
+|  3 | Database Fundamentals      | Michael Brown  | Technical | 29.99 |             2021 |   280 |        0 |
+|  4 | SQL for Beginners          | Sarah Johnson  | Technical | 34.99 |             2023 |   320 |        1 |
+|  2 | Data Design Patterns       | Emma Wilson    | Technical | 39.99 |             2022 |   350 |        1 |
+|  9 | The Perfect Index          | David Wilson   | Technical | 42.99 |             2023 |   340 |        1 |
+|  1 | The MySQL Guide            | John Smith     | Technical | 45.99 |             2023 |   400 |        1 |
+|  8 | Database Administration    | Lisa Davis     | Technical | 49.99 |             2022 |   380 |        1 |
+|  7 | Advanced Database Concepts | Robert Miller  | Technical | 54.99 |             2023 |   450 |        0 |
++----+----------------------------+----------------+-----------+-------+------------------+-------+----------+
+10 rows in set (0.000 sec)
+
+MariaDB [bookstore]> SELECT *  FROM books ORDER BY price DESC ;
++----+----------------------------+----------------+-----------+-------+------------------+-------+----------+
+| id | title                      | author         | genre     | price | publication_year | pages | in_stock |
++----+----------------------------+----------------+-----------+-------+------------------+-------+----------+
+|  7 | Advanced Database Concepts | Robert Miller  | Technical | 54.99 |             2023 |   450 |        0 |
+|  8 | Database Administration    | Lisa Davis     | Technical | 49.99 |             2022 |   380 |        1 |
+|  1 | The MySQL Guide            | John Smith     | Technical | 45.99 |             2023 |   400 |        1 |
+|  9 | The Perfect Index          | David Wilson   | Technical | 42.99 |             2023 |   340 |        1 |
+|  2 | Data Design Patterns       | Emma Wilson    | Technical | 39.99 |             2022 |   350 |        1 |
+|  4 | SQL for Beginners          | Sarah Johnson  | Technical | 34.99 |             2023 |   320 |        1 |
+|  3 | Database Fundamentals      | Michael Brown  | Technical | 29.99 |             2021 |   280 |        0 |
+|  6 | The Lost Query             | Patricia Lee   | Mystery   | 24.99 |             2022 |   310 |        1 |
+| 10 | SQL Mystery Tales          | Jennifer White | Mystery   | 22.99 |             2021 |   290 |        1 |
+|  5 | Mystery at SQL Lake        | James Anderson | Mystery   | 19.99 |             2023 |   280 |        1 |
++----+----------------------------+----------------+-----------+-------+------------------+-------+----------+
+10 rows in set (0.000 sec)
+
+```
+
+
+ORDER BY != GROUP BY 
+
+Proof query (try this 🔥)
+```
+SELECT COUNT(*) FROM books;
+```
+Before ORDER BY → 10 rows  
+After ORDER BY → 10 rows
+
+But:
+```
+SELECT genre FROM books GROUP BY genre;
+```
+
+`2 rows only`
+
+Interview-style one-liner (yaad rakh)
+
+**ORDER BY rows ko sajata hai**  
+**GROUP BY rows ko jod deta hai**  
+
+## Lab8 
+
+```sql
+labex:project/ $ sudo mysql -u root bookstore -e "SELECT title,price,publication_year FROM books WHERE publication_year IN(2022,2023) AND genre = 'Technical'" > technical_books.txt 
+labex:project/ $ cat technical_books.txt 
+title   price   publication_year
+Data Design Patterns    39.99   2022
+SQL for Beginners       34.99   2023
+labex:project/ $ 
+
+```
