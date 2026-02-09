@@ -581,7 +581,7 @@ Interview-style one-liner (yaad rakh)
 **ORDER BY rows ko sajata hai**  
 **GROUP BY rows ko jod deta hai**  
 
-## Lab8 
+## ✨Lab8 
 
 ```sql
 labex:project/ $ sudo mysql -u root bookstore -e "SELECT title,price,publication_year FROM books WHERE publication_year IN(2022,2023) AND genre = 'Technical'" > technical_books.txt 
@@ -592,3 +592,246 @@ SQL for Beginners       34.99   2023
 labex:project/ $ 
 
 ```
+
+
+
+## ✨ Lab9
+
+
+direct select a data base at the time of login 
+
+```sql
+sudo mysql -u root bookstore
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 35
+Server version: 10.6.18-MariaDB-0ubuntu0.22.04.1 Ubuntu 22.04
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [bookstore]> 
+
+```
+
+### JOINS
+
+**SIMPLE INNER JOIN**
+```sql
+MariaDB [bookstore]> SELECT books.title,authors.first_name,authors.last_name FROM books INNER JOIN authors ON books.author_id = authors.author_id;
++----------------------------+------------+-----------+
+| title                      | first_name | last_name |
++----------------------------+------------+-----------+
+| The MySQL Guide            | John       | Smith     |
+| Data Design Patterns       | Emma       | Wilson    |
+| Database Fundamentals      | Michael    | Brown     |
+| SQL for Beginners          | Sarah      | Johnson   |
+| Advanced Database Concepts | John       | Smith     |
++----------------------------+------------+-----------+
+5 rows in set (0.002 sec)
+
+MariaDB [bookstore]> SELCT * FROM books;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELCT * FROM books' at line 1
+MariaDB [bookstore]> SELECT * FROM books;
++---------+----------------------------+-----------+--------------+------------------+-------+
+| book_id | title                      | author_id | publisher_id | publication_year | price |
++---------+----------------------------+-----------+--------------+------------------+-------+
+|       1 | The MySQL Guide            |         1 |            1 |             2023 | 45.99 |
+|       2 | Data Design Patterns       |         2 |            1 |             2022 | 39.99 |
+|       3 | Database Fundamentals      |         3 |            2 |             2021 | 29.99 |
+|       4 | SQL for Beginners          |         4 |            2 |             2023 | 34.99 |
+|       5 | Advanced Database Concepts |         1 |            3 |             2023 | 54.99 |
++---------+----------------------------+-----------+--------------+------------------+-------+
+5 rows in set (0.001 sec)
+
+MariaDB [bookstore]> SELECT * FROM authors;
++-----------+------------+-----------+-------------------------+---------------------+
+| author_id | first_name | last_name | email                   | created_at          |
++-----------+------------+-----------+-------------------------+---------------------+
+|         1 | John       | Smith     | john.smith@email.com    | 2026-02-08 16:17:53 |
+|         2 | Emma       | Wilson    | emma.wilson@email.com   | 2026-02-08 16:17:53 |
+|         3 | Michael    | Brown     | michael.brown@email.com | 2026-02-08 16:17:53 |
+|         4 | Sarah      | Johnson   | sarah.johnson@email.com | 2026-02-08 16:17:53 |
++-----------+------------+-----------+-------------------------+---------------------+
+4 rows in set (0.000 sec)
+
+```
+
+
+
+## LEFT JOIN Operations  
+In this step, we'll explore LEFT JOIN operations. A LEFT JOIN (sometimes called a LEFT OUTER JOIN) returns all records from the "left" table (the first table mentioned in the FROM clause) and the matching records from the "right" table. The key difference from INNER JOIN is that even if there is no match in the right table, the records from the left table are still included in the result, with NULL values where there's no match in the right table.
+>RIGHT SIDE MEI NULL / EMPTY SPACES AAYNGY;
+
+TEST
+
+`SELECT books.title,authors.name,books.publication_year FROM books INNER JOIN ON books.author_id = authors.author_id;`
+
+```sql
+
+SELECT col.tablle1, col2.table2 
+FROM TABLE1
+INNER JOIN TABLE2
+ON table1.commonCOL = table2.commnCol;
+
+```
+
+self-correction
+
+```sql
+MariaDB [library]> SELECT books.title,authors.name,books.publication_year FROM books INNER JOIN ON books.author_id = authors.author_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ON books.author_id = authors.author_id' at line 1
+MariaDB [library]> SELECT books.title,authors.name,books.publication_year 
+    -> FROM books
+    -> INNER JOIN authors
+    -> ON books.author_id = authors.author_id;
++------------------------+--------------+------------------+
+| title                  | name         | publication_year |
++------------------------+--------------+------------------+
+| Database Design Basics | Jane Smith   |             2020 |
+| SQL Mastery            | Jane Smith   |             2021 |
+| Digital Innovation     | Robert Chen  |             2022 |
+| Tech Trends            | Maria Garcia |             2023 |
++------------------------+--------------+------------------+
+4 rows in set (0.001 sec)
+
+
+```
+
+<details>
+
+```sql
+labex:~/ $ sudo mysql -u root library -e "SELECT books.title,authors.name,books.publication_year FROM books INNER JOIN authors ON books.author_id =authors.author_id;" > project/author_books.txt 
+labex:~/ $ cd project 
+labex:project/ $ cat author_books.txt 
+title   name    publication_year
+Database Design Basics  Jane Smith      2020
+SQL Mastery     Jane Smith      2021
+Digital Innovation      Robert Chen     2022
+Tech Trends     Maria Garcia    2023
+```
+
+but now in tabular format
+
+```sql
+labex:~/ $ sudo mysql -u root library -t -e "SELECT books.title,authors.name,books.publication_year FROM books INNER JOIN authors ON books.author_id =authors.author_id;" > project/author_books2.txt
+labex:~/ $ cd project 
+labex:project/ $ cat author_books2.txt 
++------------------------+--------------+------------------+
+| title                  | name         | publication_year |
++------------------------+--------------+------------------+
+| Database Design Basics | Jane Smith   |             2020 |
+| SQL Mastery            | Jane Smith   |             2021 |
+| Digital Innovation     | Robert Chen  |             2022 |
+| Tech Trends            | Maria Garcia |             2023 |
++------------------------+--------------+------------------+
+```
+</details>
+
+## ✨LAB10
+
+### **MySQL Data Aggregation and Grouping**
+
+```sql
+-- Count total number of sales
+SELECT COUNT(*) as total_sales
+FROM sales;
+```
+
+COUNT can be used in different ways
+
+```sql
+-- Count unique products sold
+SELECT COUNT(DISTINCT product_name) as unique_products
+FROM sales;
+
+-- Count sales by category
+SELECT category, COUNT(*) as sales_count
+FROM sales
+GROUP BY category;
+```
+
+2.
+```sql
+MariaDB [sales_db]> SELECT category,COUNT(*) as sales_count
+    -> FROM sales
+    -> GROUP BY category;
++-------------+-------------+
+| category    | sales_count |
++-------------+-------------+
+| Appliances  |           2 |
+| Electronics |           5 |
+| Furniture   |           5 |
++-------------+-------------+
+3 rows in set (0.000 sec)
+
+MariaDB [sales_db]> SELECT category FROM sales GROUP BY category;
++-------------+
+| category    |
++-------------+
+| Appliances  |
+| Electronics |
+| Furniture   |
++-------------+
+3 rows in set (0.000 sec)
+
+MariaDB [sales_db]> SELECT category,COUNT(*) FROM sales GROUP BY category;
++-------------+----------+
+| category    | COUNT(*) |
++-------------+----------+
+| Appliances  |        2 |
+| Electronics |        5 |
+| Furniture   |        5 |
++-------------+----------+
+3 rows in set (0.000 sec)
+
+```
+
+**HAVING**
+
+
+
+TEST
+
+<details>
+
+```sql
+
+MariaDB [retail_store]> select category,SUM(units_sold) as total_units,SUM(units_sold * unit_price) FROM products GROUP BY category;
++-------------+-------------+------------------------------+
+| category    | total_units | SUM(units_sold * unit_price) |
++-------------+-------------+------------------------------+
+| Appliances  |          10 |                       799.90 |
+| Electronics |          35 |                     13174.65 |
+| Furniture   |          23 |                      3519.77 |
++-------------+-------------+------------------------------+
+3 rows in set (0.000 sec)
+
+MariaDB [retail_store]> select category,SUM(units_sold) as total_units,SUM(units_sold * unit_price) as total_revenue FROM products GROUP BY category ORDER BY total_revenue DESC ;
++-------------+-------------+---------------+
+| category    | total_units | total_revenue |
++-------------+-------------+---------------+
+| Electronics |          35 |      13174.65 |
+| Furniture   |          23 |       3519.77 |
+| Appliances  |          10 |        799.90 |
++-------------+-------------+---------------+
+3 rows in set (0.000 sec)
+
+MariaDB [retail_store]> exit
+Bye
+labex:project/ $ ls
+category_sales.txt
+labex:project/ $ sudo mysql -u root retail_store -t -e "select category,SUM(units_sold) as total_units,SUM(units_sold * unit_price) as total_revenue FROM products GROUP BY category ORDER BY total_revenue DESC ;" > category_sales.txt 
+labex:project/ $ cat category_sales.txt 
++-------------+-------------+---------------+
+| category    | total_units | total_revenue |
++-------------+-------------+---------------+
+| Electronics |          35 |      13174.65 |
+| Furniture   |          23 |       3519.77 |
+| Appliances  |          10 |        799.90 |
++-------------+-------------+---------------+
+```
+<details>
