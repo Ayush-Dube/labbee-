@@ -834,4 +834,10 @@ labex:project/ $ cat category_sales.txt
 | Appliances  |          10 |        799.90 |
 +-------------+-------------+---------------+
 ```
+</details>
+
+
 <details>
+
+![alt text](image-5.png)
+</details>
